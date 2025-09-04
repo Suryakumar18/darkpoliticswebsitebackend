@@ -45,7 +45,6 @@ app.get("/api/health", (req, res) => {
     timestamp: new Date().toISOString()
   });
 });
-
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on https://darkpoliticswebsitebackend.onrender.com`);
