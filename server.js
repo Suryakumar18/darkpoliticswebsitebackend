@@ -3,6 +3,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+
 const authRoutes = require("./apis/auth");
 const homepageRoutes = require("./apis/homepage");
 const aboutusRoutes = require("./apis/aboutus");
@@ -10,24 +11,25 @@ const servicesRoutes = require("./apis/services");
 const servicesContentRoutes = require("./apis/servicesContent");
 const careerRoutes = require("./apis/carrear");
 const ourImpactRoutes = require("./apis/ourImpact");
-const contactRoutes = require("./apis/contact"); // Add this line
+const contactRoutes = require("./apis/contact");
 
 const app = express();
-const PORT = "https://darkpoliticswebsitebackend.onrender.com"
+const PORT = process.env.PORT || 5000; // ✅ Render sets this automatically
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-// MongoDB connection string
-const MONGO_URI = "mongodb+srv://darkstate49:Hardwork%4018@cluster0.4sq1ggj.mongodb.net/darkpolitics?retryWrites=true&w=majority&appName=Cluster0";
+// MongoDB connection (direct string, no env file)
+const MONGO_URI =
+  "mongodb+srv://darkstate49:Hardwork%4018@cluster0.4sq1ggj.mongodb.net/darkpolitics?retryWrites=true&w=majority&appName=Cluster0";
 
-// Connect to MongoDB
-mongoose.connect(MONGO_URI)
-.then(() => console.log("✅ Connected to MongoDB Atlas"))
-.catch((err) => console.error("❌ MongoDB connection error:", err));
+mongoose
+  .connect(MONGO_URI)
+  .then(() => console.log("✅ Connected to MongoDB Atlas"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// Routes
+// API routes
 app.use("/api/auth", authRoutes);
 app.use("/api/homepage", homepageRoutes);
 app.use("/api/aboutus", aboutusRoutes);
@@ -35,20 +37,23 @@ app.use("/api/services", servicesRoutes);
 app.use("/api/services-content", servicesContentRoutes);
 app.use("/api/career", careerRoutes);
 app.use("/api/our-impact", ourImpactRoutes);
-app.use("/api/contact", contactRoutes); // Add this line
+app.use("/api/contact", contactRoutes);
 
-// Health check route
+// Health check
 app.get("/api/health", (req, res) => {
   res.json({
     success: true,
     message: "Server is running properly",
-    timestamp: new Date().toISOString()
+    backendURL: "https://darkpoliticswebsitebackend.onrender.com", // ✅ backend url added
+    timestamp: new Date().toISOString(),
   });
 });
+
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on https://darkpoliticswebsitebackend.onrender.com`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
+
 
 //---------- Usage Examples ----------
 
