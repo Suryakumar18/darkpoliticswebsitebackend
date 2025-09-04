@@ -14,13 +14,14 @@ const ourImpactRoutes = require("./apis/ourImpact");
 const contactRoutes = require("./apis/contact");
 
 const app = express();
-const PORT = process.env.PORT || 5000; // ✅ Render sets this automatically
+const PORT = 5000; // Render sets this
+const BACKEND_URL = "https://darkpoliticswebsitebackend.onrender.com"; // ✅ Hardcoded backend URL
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-// MongoDB connection (direct string, no env file)
+// MongoDB connection
 const MONGO_URI =
   "mongodb+srv://darkstate49:Hardwork%4018@cluster0.4sq1ggj.mongodb.net/darkpolitics?retryWrites=true&w=majority&appName=Cluster0";
 
@@ -44,15 +45,16 @@ app.get("/api/health", (req, res) => {
   res.json({
     success: true,
     message: "Server is running properly",
-    backendURL: "https://darkpoliticswebsitebackend.onrender.com", // ✅ backend url added
+    backendURL: BACKEND_URL, // ✅ show backend url
     timestamp: new Date().toISOString(),
   });
 });
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`🚀 Server running on ${BACKEND_URL} (port ${PORT})`);
 });
+
 
 
 //---------- Usage Examples ----------
