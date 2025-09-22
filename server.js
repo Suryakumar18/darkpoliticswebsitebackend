@@ -18,8 +18,17 @@ const PORT = 5000; // Render sets this
 const BACKEND_URL = "https://darkpoliticswebsitebackend.onrender.com"; // ✅ Hardcoded backend URL
 
 // Middleware
-app.use(cors());
-app.use(express.json());
+app.use(express.json({ extended: false }));
+app.use(
+  cors({
+    origin: [
+      "https://darkpoliticalconsultancy.com",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+    exposedHeaders: ["Content-Length", "Authorization"],
+  })
+);
 
 // MongoDB connection
 const MONGO_URI =
@@ -98,4 +107,5 @@ app.listen(PORT, () => {
 // PATCH /api/contact/social/:id/toggle
 
 // 11. Delete social link
+
 // DELETE /api/contact/social/:id
