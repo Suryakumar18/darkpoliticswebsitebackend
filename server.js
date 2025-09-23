@@ -23,7 +23,7 @@ app.use(
   cors({
     origin: [
       "https://darkpoliticalconsultancy.com","https://68d2655c9f1f1f3efc81865d--darkpoliticss.netlify.app",
-      "https://68d2655c9f1f1f3efc81865d--darkpoliticss.netlify.app/login"
+      "https://68d26da0424e0b5c2cd3f8b9--darkpoliticss.netlify.app","https://68d26da0424e0b5c2cd3f8b9--darkpoliticss.netlify.app/"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
@@ -110,5 +110,6 @@ app.listen(PORT, () => {
 // 11. Delete social link
 
 // DELETE /api/contact/social/:id
+
 
 
