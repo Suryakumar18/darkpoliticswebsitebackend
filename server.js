@@ -22,8 +22,7 @@ app.use(express.json({ extended: false }));
 app.use(
   cors({
     origin: [
-      "https://darkpoliticalconsultancy.com","https://68d2655c9f1f1f3efc81865d--darkpoliticss.netlify.app",
-      "https://68d26da0424e0b5c2cd3f8b9--darkpoliticss.netlify.app","https://68d26da0424e0b5c2cd3f8b9--darkpoliticss.netlify.app/","https://68d37fe22300722f52b4a827--kkkkkkkkkkj.netlify.app"
+      "https://darkpoliticalconsultancy.com",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
@@ -110,6 +109,7 @@ app.listen(PORT, () => {
 // 11. Delete social link
 
 // DELETE /api/contact/social/:id
+
 
 
 
